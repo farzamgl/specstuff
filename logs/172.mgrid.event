@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/172.mgrid.nbf
+mcycle	36643336596
+minstret	18738562582
+fe_stall	12448855421
+fe_queue_full	12446803076
+icache_access	21483069858
+icache_rollback	156471
+icache_miss	4289401
+taken	439246215
+ovr_taken	1550370
+ret	521584
+over_ret	399398
+fe_cmd_nonattaboy	7083402
+mispredict	7083158
+mispredict_taken	835092
+mispredict_ntaken	6244256
+mispredict_nonbr	3810
+control_haz	75048
+data_dep	9589865198
+load_dep	2409927334
+mul_dep	33532
+struct_haz	7547720673
+dcache_access	6835736759
+dcache_rollback	218006751
+dcache_miss	7765624724

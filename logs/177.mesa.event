@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/177.mesa.nbf
+mcycle	618384197
+minstret	437280344
+fe_stall	105572506
+fe_queue_full	112768561
+icache_access	479729687
+icache_rollback	1970
+icache_miss	75578
+taken	28912758
+ovr_taken	11074801
+ret	4197620
+over_ret	2991123
+fe_cmd_nonattaboy	7483050
+mispredict	7483048
+mispredict_taken	5457008
+mispredict_ntaken	2025734
+mispredict_nonbr	306
+control_haz	4869459
+data_dep	123638715
+load_dep	29750234
+mul_dep	8268042
+struct_haz	15327160
+dcache_access	125822038
+dcache_rollback	376365
+dcache_miss	12423928

@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/447.dealII.nbf
+mcycle	29475106658
+minstret	20233639810
+fe_stall	6206794040
+fe_queue_full	6420900365
+icache_access	22213454048
+icache_rollback	550423
+icache_miss	9610438
+taken	1743440912
+ovr_taken	127977325
+ret	348746656
+over_ret	94782643
+fe_cmd_nonattaboy	298708674
+mispredict	298708672
+mispredict_taken	128113038
+mispredict_ntaken	170336585
+mispredict_nonbr	259049
+control_haz	106020413
+data_dep	3160369137
+load_dep	746762572
+mul_dep	175521721
+struct_haz	4325734880
+dcache_access	5001962327
+dcache_rollback	84194003
+dcache_miss	2862593102

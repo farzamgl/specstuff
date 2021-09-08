@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/433.milc.nbf
+mcycle	64471268802
+minstret	25439945103
+fe_queue_stall	1509215649
+icache_rollback	21867
+icache_miss	242491
+icache_fence	0
+taken_override	35626747
+ret_override	1116518
+fe_cmd	332846758
+fe_cmd_fence	1
+mispredict	1661353807
+control_haz	2613236
+long_haz	2315750
+data_haz	5243716104
+load_dep	537180490
+mul_dep	107700161
+struct_haz	9066534
+dcache_rollback	2798138971
+dcache_miss	23727132695
+unknown	3063087014

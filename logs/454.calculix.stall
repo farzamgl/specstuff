@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/454.calculix.nbf
+mcycle	558419470
+minstret	321086336
+fe_queue_stall	3227021
+icache_rollback	650265
+icache_miss	2756145
+icache_fence	0
+taken_override	2839855
+ret_override	812843
+fe_cmd	839153
+fe_cmd_fence	1
+mispredict	23884446
+control_haz	470961
+long_haz	877797
+data_haz	36332905
+load_dep	3520616
+mul_dep	88674
+struct_haz	954623
+dcache_rollback	12107422
+dcache_miss	128865739
+unknown	19160583

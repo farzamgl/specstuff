@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/186.crafty.nbf
+mcycle	5607349412
+minstret	4142494852
+fe_stall	686612061
+fe_queue_full	701023564
+icache_access	4546254175
+icache_rollback	4169077
+icache_miss	85071225
+taken	305219158
+ovr_taken	180224707
+ret	63092768
+over_ret	54609251
+fe_cmd_nonattaboy	102282409
+mispredict	102282407
+mispredict_taken	63978211
+mispredict_ntaken	38302237
+mispredict_nonbr	1959
+control_haz	12750319
+data_dep	547699249
+load_dep	229746961
+mul_dep	13220289
+struct_haz	263658178
+dcache_access	1219026914
+dcache_rollback	12849183
+dcache_miss	276518954

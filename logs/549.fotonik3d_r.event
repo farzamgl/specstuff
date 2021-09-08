@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/549.fotonik3d_r.nbf
+mcycle	1665760289
+minstret	779847124
+fe_stall	780403349
+fe_queue_full	783365737
+icache_access	837491721
+icache_rollback	308283
+icache_miss	4386947
+taken	50958100
+ovr_taken	7316230
+ret	4004338
+over_ret	3306372
+fe_cmd_nonattaboy	7494920
+mispredict	7424568
+mispredict_taken	4073757
+mispredict_ntaken	3319630
+mispredict_nonbr	31181
+control_haz	2795293
+data_dep	111676926
+load_dep	16833422
+mul_dep	1257593
+struct_haz	659529469
+dcache_access	297570362
+dcache_rollback	17943807
+dcache_miss	672649527

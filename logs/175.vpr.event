@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/175.vpr.nbf
+mcycle	31469302
+minstret	23797823
+fe_stall	2210415
+fe_queue_full	2771551
+icache_access	26829188
+icache_rollback	3625
+icache_miss	94965
+taken	3010984
+ovr_taken	1189466
+ret	233976
+over_ret	147585
+fe_cmd_nonattaboy	670544
+mispredict	670542
+mispredict_taken	359925
+mispredict_ntaken	309791
+mispredict_nonbr	826
+control_haz	48177
+data_dep	3777198
+load_dep	1631844
+mul_dep	7556
+struct_haz	279994
+dcache_access	6916352
+dcache_rollback	4556
+dcache_miss	282493

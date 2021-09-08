@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/462.libquantum.nbf
+mcycle	227966701
+minstret	176441761
+fe_stall	22736459
+fe_queue_full	25302088
+icache_access	195632713
+icache_rollback	924
+icache_miss	32563
+taken	36286211
+ovr_taken	404072
+ret	297129
+over_ret	279400
+fe_cmd_nonattaboy	2670556
+mispredict	2670554
+mispredict_taken	1089060
+mispredict_ntaken	1581493
+mispredict_nonbr	1
+control_haz	294019
+data_dep	24223016
+load_dep	21271284
+mul_dep	34866
+struct_haz	13131313
+dcache_access	45246309
+dcache_rollback	864910
+dcache_miss	12256930

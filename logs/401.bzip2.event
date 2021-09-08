@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/401.bzip2.nbf
+mcycle	4672538647
+minstret	3176293560
+fe_stall	1097213726
+fe_queue_full	1115121092
+icache_access	3401552924
+icache_rollback	3455
+icache_miss	103788
+taken	141213746
+ovr_taken	10373672
+ret	8492122
+over_ret	6053154
+fe_cmd_nonattaboy	18314487
+mispredict	18314485
+mispredict_taken	10169197
+mispredict_ntaken	8145287
+mispredict_nonbr	1
+control_haz	99491
+data_dep	514722234
+load_dep	512476558
+mul_dep	47736
+struct_haz	822119064
+dcache_access	857281884
+dcache_rollback	26016452
+dcache_miss	848136564

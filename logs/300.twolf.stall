@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/300.twolf.nbf
+mcycle	203123786
+minstret	97582938
+fe_queue_stall	831202
+icache_rollback	234971
+icache_miss	1376375
+icache_fence	0
+taken_override	1867203
+ret_override	393867
+fe_cmd	597567
+fe_cmd_fence	1
+mispredict	11034934
+control_haz	1232723
+long_haz	2752488
+data_haz	64985607
+load_dep	1918728
+mul_dep	321599
+struct_haz	12196857
+dcache_rollback	110630
+dcache_miss	550757
+unknown	5178279

@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/445.gobmk.nbf
+mcycle	1185279030
+minstret	412801095
+fe_stall	693364186
+fe_queue_full	685781529
+icache_access	459262223
+icache_rollback	817271
+icache_miss	14084917
+taken	72842584
+ovr_taken	5890110
+ret	3168882
+over_ret	2436695
+fe_cmd_nonattaboy	7327870
+mispredict	7327868
+mispredict_taken	4870049
+mispredict_ntaken	2455562
+mispredict_nonbr	2257
+control_haz	660094
+data_dep	31065097
+load_dep	17947423
+mul_dep	2805158
+struct_haz	638524168
+dcache_access	163380568
+dcache_rollback	13365799
+dcache_miss	651751743

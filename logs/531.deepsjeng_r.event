@@ -1,0 +1,25 @@
+/home/xilinx/mnt/nfs_client/bench/531.deepsjeng_r.nbf
+mcycle	54055137217
+minstret	42491363258
+fe_stall	4459637085
+fe_queue_full	4644103322
+icache_access	45922280174
+icache_rollback	42753276
+icache_miss	745224306
+taken	3291403886
+ovr_taken	1730593901
+ret	857395723
+over_ret	723291654
+fe_cmd_nonattaboy	947880127
+mispredict	947880125
+mispredict_taken	561174925
+mispredict_ntaken	386705169
+mispredict_nonbr	31
+control_haz	107279473
+data_dep	3702186547
+load_dep	1681142028
+mul_dep	254180985
+struct_haz	1695216187
+dcache_access	12298496961
+dcache_rollback	53314253
+dcache_miss	1337800839
