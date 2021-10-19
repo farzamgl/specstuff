@@ -1,0 +1,27 @@
+/home/xilinx/mnt/nfs_client/bench/450.soplex.nbf
+mcycle	663828610
+minstret	394604506
+fe_queue_stall	12933866
+icache_rollback	642113
+icache_miss	8322276
+icache_fence	0
+taken_override	1083436
+ret_override	180932
+fe_cmd	1438277
+fe_cmd_fence	1
+mispredict	18148560
+control_haz	282529
+long_haz	515743
+data_haz	0
+aux_dep	0
+load_dep	8956464
+mul_dep	124822
+fma_dep	11429069
+sb_iraw_dep	9083996
+sb_fraw_dep	3779956
+sb_iwaw_dep	1356831
+sb_fwaw_dep	0
+struct_haz	23051
+dcache_rollback	13464335
+dcache_miss	94700470
+unknown	82795156

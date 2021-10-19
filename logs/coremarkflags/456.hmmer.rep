@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/456.hmmer.nbf
+mcycle	6410471723
+minstret	5012014306
+fe_queue_stall	32013898
+icache_rollback	8871
+icache_miss	96318
+icache_fence	0
+taken_override	3502542
+ret_override	296593
+fe_cmd	9354704
+fe_cmd_fence	1
+mispredict	276502815
+control_haz	3475787
+long_haz	8077798
+data_haz	162195814
+load_dep	3327676
+mul_dep	5631284
+struct_haz	71255813
+dcache_rollback	59514354
+dcache_miss	453063985
+unknown	310182124

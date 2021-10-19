@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/473.astar.nbf
+mcycle	41947507931
+minstret	18288516901
+fe_queue_stall	914769018
+icache_rollback	5708
+icache_miss	70713
+icache_fence	0
+taken_override	11729038
+ret_override	3171297
+fe_cmd	109740833
+fe_cmd_fence	1
+mispredict	2853146840
+control_haz	1144157
+long_haz	2376637
+data_haz	38613942
+load_dep	1284920826
+mul_dep	273296594
+struct_haz	22078115
+dcache_rollback	1702173190
+dcache_miss	13694560605
+unknown	2747231092

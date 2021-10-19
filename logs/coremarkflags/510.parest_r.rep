@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/510.parest_r.nbf
+mcycle	66056158327
+minstret	28664272631
+fe_queue_stall	1540643786
+icache_rollback	1354213
+icache_miss	13199953
+icache_fence	0
+taken_override	39879871
+ret_override	14843340
+fe_cmd	172025043
+fe_cmd_fence	1
+mispredict	1192838754
+control_haz	20471473
+long_haz	33212697
+data_haz	3739520107
+load_dep	459035050
+mul_dep	15699754
+struct_haz	52102969
+dcache_rollback	3516731185
+dcache_miss	24091233385
+unknown	2489147650

@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/548.exchange2_r.nbf
+mcycle	108124599932
+minstret	91766331952
+fe_queue_stall	139506851
+icache_rollback	38044342
+icache_miss	348527888
+icache_fence	0
+taken_override	1467720097
+ret_override	28265457
+fe_cmd	196657423
+fe_cmd_fence	1
+mispredict	8070556277
+control_haz	40206077
+long_haz	80724775
+data_haz	2051973041
+load_dep	248970643
+mul_dep	239700712
+struct_haz	86019428
+dcache_rollback	13245
+dcache_miss	253610
+unknown	3321174101

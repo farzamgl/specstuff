@@ -1,0 +1,27 @@
+/home/xilinx/mnt/nfs_client/bench/173.applu.nbf
+mcycle	698852315
+minstret	234311399
+fe_queue_stall	13958305
+icache_rollback	227951
+icache_miss	2189979
+icache_fence	0
+taken_override	1012701
+ret_override	102567
+fe_cmd	829868
+fe_cmd_fence	1
+mispredict	6619365
+control_haz	2120013
+long_haz	4815807
+data_haz	0
+aux_dep	55081
+load_dep	2614205
+mul_dep	5079
+fma_dep	38330550
+sb_iraw_dep	1245224
+sb_fraw_dep	61961955
+sb_iwaw_dep	19258
+sb_fwaw_dep	0
+struct_haz	18764844
+dcache_rollback	25787518
+dcache_miss	263816904
+unknown	20102504

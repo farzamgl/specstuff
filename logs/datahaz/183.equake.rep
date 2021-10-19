@@ -1,0 +1,27 @@
+/home/xilinx/mnt/nfs_client/bench/183.equake.nbf
+mcycle	738820039
+minstret	426654064
+fe_queue_stall	8265470
+icache_rollback	4410
+icache_miss	48019
+icache_fence	0
+taken_override	3761266
+ret_override	1746605
+fe_cmd	1841284
+fe_cmd_fence	1
+mispredict	32473312
+control_haz	1765730
+long_haz	4129849
+data_haz	0
+aux_dep	0
+load_dep	4496514
+mul_dep	2714682
+fma_dep	30384696
+sb_iraw_dep	35915440
+sb_fraw_dep	17274853
+sb_iwaw_dep	15211634
+sb_fwaw_dep	0
+struct_haz	26331735
+dcache_rollback	10785114
+dcache_miss	83385507
+unknown	31665138

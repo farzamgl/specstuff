@@ -1,0 +1,27 @@
+/home/xilinx/mnt/nfs_client/bench/171.swim.nbf
+mcycle	1543115173
+minstret	480063495
+fe_queue_stall	55722322
+icache_rollback	18785
+icache_miss	123859
+icache_fence	0
+taken_override	991666
+ret_override	149302
+fe_cmd	66837
+fe_cmd_fence	1
+mispredict	4507693
+control_haz	3148511
+long_haz	9180046
+data_haz	0
+aux_dep	33216
+load_dep	3527549
+mul_dep	779
+fma_dep	191599705
+sb_iraw_dep	108792
+sb_fraw_dep	160037822
+sb_iwaw_dep	14785
+sb_fwaw_dep	0
+struct_haz	13746903
+dcache_rollback	58686156
+dcache_miss	497791388
+unknown	63640169

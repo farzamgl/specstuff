@@ -1,0 +1,27 @@
+/home/xilinx/mnt/nfs_client/bench/197.parser.nbf
+mcycle	319442504
+minstret	234061894
+fe_queue_stall	1719095
+icache_rollback	7483
+icache_miss	84283
+icache_fence	0
+taken_override	1942501
+ret_override	1986143
+fe_cmd	626227
+fe_cmd_fence	1
+mispredict	24983613
+control_haz	175311
+long_haz	360148
+data_haz	0
+aux_dep	0
+load_dep	4501837
+mul_dep	172421
+fma_dep	0
+sb_iraw_dep	6190791
+sb_fraw_dep	0
+sb_iwaw_dep	4718024
+sb_fwaw_dep	0
+struct_haz	554179
+dcache_rollback	2642042
+dcache_miss	21929720
+unknown	12824107

@@ -1,0 +1,27 @@
+/home/xilinx/mnt/nfs_client/bench/437.leslie3d.nbf
+mcycle	135081109407
+minstret	43499284460
+fe_queue_stall	1293282667
+icache_rollback	9306895
+icache_miss	104985196
+icache_fence	0
+taken_override	9723868
+ret_override	741704
+fe_cmd	25189539
+fe_cmd_fence	1
+mispredict	255101900
+control_haz	1136656655
+long_haz	2736135734
+data_haz	0
+aux_dep	2248318
+load_dep	114363086
+mul_dep	632161
+fma_dep	1634073483
+sb_iraw_dep	11990054
+sb_fraw_dep	12348875675
+sb_iwaw_dep	256237
+sb_fwaw_dep	1857295675
+struct_haz	22338146782
+dcache_rollback	4976326691
+dcache_miss	40121845522
+unknown	2604688564

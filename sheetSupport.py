@@ -8,6 +8,7 @@ from google.oauth2.credentials import Credentials
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive']
 SPREADSHEET_ID = '1YfNEdrXEHRLEvV8KjvLy8PZYHxctiLte1G5HsDPcTSU'
+#SPREADSHEET_ID = '1dqU20wHog4fddDgOOW1hwdr3Yz4yFD_v8jc9sf2EKLw'
 
 def addSheet(self, name):
     response = self.get(spreadsheetId=SPREADSHEET_ID, ranges=[]).execute()
@@ -26,32 +27,27 @@ def addSheet(self, name):
 
 def writeSheet(self, range, values): 
     body = {
-      "valueInputOption": "USER_ENTERED",
-      "data" : {
-        "range": range,
-        "majorDimension": "ROWS",
-        "values": values
+      'valueInputOption': 'USER_ENTERED',
+      'data' : {
+        'range': range,
+        'majorDimension': 'ROWS',
+        'values': values
       }
     }
     self.values().batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
+
 
 def formatSheet(self, sheetId, rows, cols):
     body = {
       'requests': [
         {
-          'autoResizeDimensions': {
-            'dimensions': {
-              'sheetId': sheetId,
-              'dimension': 'COLUMNS',
-              'startIndex': 0,
-              'endIndex': cols
-            }
-          }
-        },
-        {
           'repeatCell': {
             'cell': {
               'userEnteredFormat': {
+                'numberFormat': {
+                  'type': 'PERCENT',
+                  'pattern': '#0.00%'
+                },
                 'horizontalAlignment': 'CENTER',
                 'verticalAlignment': 'MIDDLE',
               }
@@ -65,7 +61,90 @@ def formatSheet(self, sheetId, rows, cols):
             },
             'fields': 'userEnteredFormat'
           }
-        }
+        },
+        {
+          'updateSheetProperties': {
+            'properties': {
+              'sheetId': sheetId,
+              'gridProperties': {
+                'frozenRowCount': 1,
+                'frozenColumnCount': 1
+              }
+          },
+          'fields': 'gridProperties.frozenRowCount, gridProperties.frozenColumnCount'
+          }
+        },
+        {
+          'autoResizeDimensions': {
+            'dimensions': {
+              'sheetId': sheetId,
+              'dimension': 'COLUMNS',
+              'startIndex': 0,
+              'endIndex': cols
+            }
+          }
+        },
+      ]
+    }
+    self.batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
+
+def paintCells(self, sheetId, colStart, colEnd):
+    body = {
+      'requests': [
+        {
+          'addConditionalFormatRule': {
+            'rule': {
+              'ranges': {
+                'sheetId': sheetId,
+                'startColumnIndex': colStart,
+                'endColumnIndex': colEnd,
+              },
+              'booleanRule': {
+                'condition': {
+                  'type': 'NUMBER_GREATER_THAN_EQ',
+                  'values': {
+                    'userEnteredValue': '0.2'
+                  }
+                },
+                'format': {
+                  'backgroundColor': {
+                    'red': 0xe0/255,
+                    'green': 0x66/255,
+                    'blue': 0x66/255
+                  }
+                }
+              }
+            },
+            'index': 0
+          }
+        },
+        {
+          'addConditionalFormatRule': {
+            'rule': {
+              'ranges': {
+                'sheetId': sheetId,
+                'startColumnIndex': colStart,
+                'endColumnIndex': colEnd,
+              },
+              'booleanRule': {
+                'condition': {
+                  'type': 'NUMBER_GREATER_THAN_EQ',
+                  'values': {
+                    'userEnteredValue': '0.05'
+                  }
+                },
+                'format': {
+                  'backgroundColor': {
+                    'red': 0xea/255,
+                    'green': 0x99/255,
+                    'blue': 0x99/255
+                  }
+                }
+              }
+            },
+            'index': 1
+          }
+        },
       ]
     }
     self.batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()

@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/410.bwaves.nbf
+mcycle	49458862853
+minstret	14894054244
+fe_queue_stall	2293679905
+icache_rollback	344278
+icache_miss	3683086
+icache_fence	0
+taken_override	5223619
+ret_override	345009
+fe_cmd	19478662
+fe_cmd_fence	1
+mispredict	116137769
+control_haz	267710425
+long_haz	652707383
+data_haz	6091749423
+load_dep	1194612191
+mul_dep	591263
+struct_haz	4969980272
+dcache_rollback	1965872974
+dcache_miss	15718830817
+unknown	1263902393

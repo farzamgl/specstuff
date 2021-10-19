@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/181.mcf.nbf
+mcycle	456889795
+minstret	114846922
+fe_queue_stall	7878270
+icache_rollback	3432
+icache_miss	40325
+icache_fence	0
+taken_override	415393
+ret_override	78931
+fe_cmd	382841
+fe_cmd_fence	1
+mispredict	6062269
+control_haz	11214
+long_haz	24673
+data_haz	684528
+load_dep	235343
+mul_dep	14039
+struct_haz	135243
+dcache_rollback	33232400
+dcache_miss	280437822
+unknown	12443187

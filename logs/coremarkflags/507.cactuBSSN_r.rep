@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/507.cactuBSSN_r.nbf
+mcycle	147911003555
+minstret	50055185134
+fe_queue_stall	561042837
+icache_rollback	8686552665
+icache_miss	59018072009
+icache_fence	0
+taken_override	49493851
+ret_override	21363172
+fe_cmd	32924105
+fe_cmd_fence	1
+mispredict	376683810
+control_haz	20423205
+long_haz	46863530
+data_haz	2006064135
+load_dep	752367324
+mul_dep	15414311
+struct_haz	73859074
+dcache_rollback	2631994027
+dcache_miss	21207839428
+unknown	2354910171

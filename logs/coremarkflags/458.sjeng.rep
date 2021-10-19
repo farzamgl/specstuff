@@ -1,0 +1,21 @@
+/home/xilinx/mnt/nfs_client/bench/458.sjeng.nbf
+mcycle	23512641796
+minstret	17706481522
+fe_queue_stall	42756777
+icache_rollback	39465067
+icache_miss	237134792
+icache_fence	0
+taken_override	375753566
+ret_override	55360289
+fe_cmd	69231043
+fe_cmd_fence	1
+mispredict	2445642909
+control_haz	8591780
+long_haz	17183689
+data_haz	537852026
+load_dep	1385036
+mul_dep	3276751
+struct_haz	10460
+dcache_rollback	127546462
+dcache_miss	1046155180
+unknown	798857316
