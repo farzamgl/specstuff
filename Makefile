@@ -3,6 +3,9 @@ include Makefile.frag
 
 SHELL := /bin/bash
 
+URL         ?= git@github.com:black-parrot-hdk/zynq-parrot.git
+BRANCH      ?= spectests
+
 SERVER_MNT   = /home/farzam/mnt/nfs
 BOARD_MNT    = /home/xilinx/mnt/nfs_client
 IP_GROUP     = 192.168.2.
@@ -33,10 +36,10 @@ query_mem:
 	done
 
 $(SERVER_MNT)/%/zynq-parrot:
-	git clone git@github.com:black-parrot-hdk/zynq-parrot.git $@ --branch spectests
+	git clone $(URL) $@ --branch $(BRANCH)
 
 gen_dirs:
-	git clone git@github.com:black-parrot-hdk/zynq-parrot.git $(SERVER_MNT)/zynq-parrot --branch spectests
+	git clone $(URL) $(SERVER_MNT)/zynq-parrot --branch $(BRANCH)
 	for ip in $(BOARDS); do \
 		mkdir -p $(SERVER_MNT)/$$ip; \
 		cp -r $(SERVER_MNT)/zynq-parrot $(SERVER_MNT)/$$ip/zynq-parrot; \
@@ -71,8 +74,8 @@ run_benchs: $(foreach ip,$(BOARDS),$(ip).run)
 else
 
 ZPARROT_DIR = $(BOARD_MNT)/$(MY_IP)/zynq-parrot
-FPGA_DIR    = $(ZPARROT_DIR)/cosim/black-parrot-example/fpga
-BITSTREAM   = $(FPGA_DIR)/blackparrot_bd_1.tar.xz.b64
+FPGA_DIR   ?= $(ZPARROT_DIR)/cosim/black-parrot-example/fpga
+BITSTREAM  ?= $(FPGA_DIR)/blackparrot_bd_1.tar.xz.b64
 
 $(BITSTREAM): | $(ZPARROT_DIR)
 	cp $(BOARD_MNT)/$(notdir $(BITSTREAM)) $(BITSTREAM)

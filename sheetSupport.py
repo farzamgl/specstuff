@@ -7,11 +7,9 @@ from google.oauth2.credentials import Credentials
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive.file', 'https://www.googleapis.com/auth/drive']
-SPREADSHEET_ID = '1YfNEdrXEHRLEvV8KjvLy8PZYHxctiLte1G5HsDPcTSU'
-#SPREADSHEET_ID = '1dqU20wHog4fddDgOOW1hwdr3Yz4yFD_v8jc9sf2EKLw'
 
-def addSheet(self, name):
-    response = self.get(spreadsheetId=SPREADSHEET_ID, ranges=[]).execute()
+def addSheet(self, spreadsheetId, name):
+    response = self.get(spreadsheetId=spreadsheetId, ranges=[]).execute()
     names = [item.get("properties").get("title") for item in response.get("sheets")]
 
     if name not in names:
@@ -20,12 +18,12 @@ def addSheet(self, name):
           {"addSheet": {"properties": {"title": name}}}
         ]
       }
-      response = self.batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
+      response = self.batchUpdate(spreadsheetId=spreadsheetId, body=body).execute()
       return response.get('replies')[0].get('addSheet').get('properties').get('sheetId')
     else:
       return response.get('sheets')[names.index(name)].get('properties').get('sheetId')
 
-def writeSheet(self, range, values): 
+def writeSheet(self, spreadsheetId, range, values): 
     body = {
       'valueInputOption': 'USER_ENTERED',
       'data' : {
@@ -34,10 +32,10 @@ def writeSheet(self, range, values):
         'values': values
       }
     }
-    self.values().batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
+    self.values().batchUpdate(spreadsheetId=spreadsheetId, body=body).execute()
 
 
-def formatSheet(self, sheetId, rows, cols):
+def formatSheet(self, spreadsheetId, sheetId, rows, cols):
     body = {
       'requests': [
         {
@@ -56,7 +54,7 @@ def formatSheet(self, sheetId, rows, cols):
               'sheetId': sheetId,
               'startRowIndex': 0,
               'endRowIndex': rows,
-              'startColumnIndex': 0,
+              'startColumnIndex': 2,
               'endColumnIndex': cols,
             },
             'fields': 'userEnteredFormat'
@@ -86,9 +84,9 @@ def formatSheet(self, sheetId, rows, cols):
         },
       ]
     }
-    self.batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
+    self.batchUpdate(spreadsheetId=spreadsheetId, body=body).execute()
 
-def paintCells(self, sheetId, colStart, colEnd):
+def paintCells(self, spreadsheetId, sheetId, colStart, colEnd):
     body = {
       'requests': [
         {
@@ -147,7 +145,7 @@ def paintCells(self, sheetId, colStart, colEnd):
         },
       ]
     }
-    self.batchUpdate(spreadsheetId=SPREADSHEET_ID, body=body).execute()
+    self.batchUpdate(spreadsheetId=spreadsheetId, body=body).execute()
 
 def initSheets():
     """Shows basic usage of the Sheets API.

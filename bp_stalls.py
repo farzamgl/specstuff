@@ -3,6 +3,8 @@ import argparse
 import os.path
 from pprint import pprint
 
+SPREADSHEET_ID = '1YfNEdrXEHRLEvV8KjvLy8PZYHxctiLte1G5HsDPcTSU'
+
 def getNotation(n):
     string = ''
     while n > 0:
@@ -33,6 +35,7 @@ if __name__ == '__main__':
     f.close()
 
     perc = [('Benchmark', os.path.splitext(os.path.basename(f.name))[0])]
+    perc.append(('mcycle', data['mcycle']))
     perc.append(('Instruction', data['minstret'] / data['mcycle']))
     perc.append(('D$ miss', data['dcache_miss'] / data['mcycle']))
     perc.append(('D$ rollback', data['dcache_rollback'] / data['mcycle']))
@@ -62,7 +65,7 @@ if __name__ == '__main__':
     perc.append(('I$ fence', data['icache_fence'] / data['mcycle']))
     perc.append(('FE cmd', data['fe_cmd'] / data['mcycle']))
     perc.append(('FE cmd fence', data['fe_cmd_fence'] / data['mcycle']))
-    perc.append(('Sum', '=SUM(A'+str(2+fileNum)+':'+getNotation(len(perc))+str(2+fileNum)+')'))
+    perc.append(('Sum', '=SUM(C'+str(2+fileNum)+':'+getNotation(len(perc))+str(2+fileNum)+')'))
     perc.append(('Mem instr', data['mem_instr']/data['minstret']))
     perc.append(('Aux instr', data['aux_instr']/data['minstret']))
     perc.append(('FMA instr', data['fma_instr']/data['minstret']))
@@ -76,10 +79,10 @@ if __name__ == '__main__':
     values.append([x[1] for x in perc])
 
   sheets = sheetSupport.initSheets()
-  sheetId = sheetSupport.addSheet(sheets, "Stalls")
+  sheetId = sheetSupport.addSheet(sheets, SPREADSHEET_ID, "Stalls")
 
   print(len(values[0])-1)
 
-  sheetSupport.writeSheet(sheets, 'Stalls!A1:'+getNotation(len(values[0])), values)
-  sheetSupport.formatSheet(sheets, sheetId, len(values), len(values[0]))
-  sheetSupport.paintCells(sheets, sheetId, 2, [x[0] for x in perc].index('Sum'))
+  sheetSupport.writeSheet(sheets, SPREADSHEET_ID, 'Stalls!A1:'+getNotation(len(values[0])), values)
+  sheetSupport.formatSheet(sheets, SPREADSHEET_ID, sheetId, len(values), len(values[0]))
+  sheetSupport.paintCells(sheets, SPREADSHEET_ID, sheetId, 3, [x[0] for x in perc].index('Sum'))
