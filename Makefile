@@ -1,96 +1,21 @@
 
-include Makefile.frag
+BP_DIR ?= logs/events/bp-new/
+AR_DIR ?= logs/events/cva6-new/
 
-SHELL := /bin/bash
+TESTS = 164.gzip 171.swim 172.mgrid 173.applu 177.mesa 181.mcf 183.equake 186.crafty 188.ammp 197.parser 256.bzip2 300.twolf 401.bzip2 410.bwaves 433.milc 437.leslie3d 444.namd 445.gobmk 447.dealII 450.soplex 454.calculix 456.hmmer 458.sjeng 462.libquantum 464.h264ref 471.omnetpp 473.astar 507.cactuBSSN_r 508.namd_r 510.parest_r 531.deepsjeng_r 541.leela_r 544.nab_r 548.exchange2_r 549.fotonik3d_r 557.xz_r 
 
-URL         ?= git@github.com:black-parrot-hdk/zynq-parrot.git
-BRANCH      ?= spectests
+REPS = $(addsuffix .rep,$(TESTS))
+BP_REPS = $(addprefix $(BP_DIR),$(REPS))
+AR_REPS = $(addprefix $(AR_DIR),$(REPS))
 
-SERVER_MNT   = /home/farzam/mnt/nfs
-BOARD_MNT    = /home/xilinx/mnt/nfs_client
-IP_GROUP     = 192.168.2.
-SERVER_IP    = $(IP_GROUP)1
-SERVER_UNAME = farzam
-CLIENT_UNAME = xilinx
-CLIENT_PASS  = xilinx
-MY_IP        = $(shell ifconfig | awk '/$(IP_GROUP)/ {print $$2}')
-#BOARDS       = $(filter-out $(SERVER_IP),$(shell nmap -sn -oG - $(IP_GROUP)90-99 | awk '/Host:/ {print $$2}'))
-BOARDS       = 192.168.2.95 192.168.2.96 192.168.2.97 192.168.2.98 192.168.2.99
-SSH_SESSIONS = $(subst :ssh,,$(shell ss | grep -i ':ssh' | awk '/:ssh/ {print $$6}'))
+events:
+	python events.py --ar_path $(AR_DIR) --bp_path $(BP_DIR) $(REPS)
 
-define ssh2board
-	ssh $(CLIENT_UNAME)@$1 $2 "echo $(CLIENT_PASS) | sudo -S $3"
-endef
+groups:
+	python groups.py --ar_path $(AR_DIR) --bp_path $(BP_DIR) $(REPS)
 
-ifeq ($(SERVER_IP),$(MY_IP))
+bp_stalls:
+	python bp_stalls.py $(BP_REPS)
 
-query_boards:
-	@echo $(BOARDS)
-
-query_ssh:
-	@echo $(SSH_SESSIONS)
-
-query_mem:
-	for ip in $(BOARDS); do \
-		$(call ssh2board,$$ip,,cat /proc/meminfo); \
-	done
-
-$(SERVER_MNT)/%/zynq-parrot:
-	git clone $(URL) $@ --branch $(BRANCH)
-
-gen_dirs:
-	git clone $(URL) $(SERVER_MNT)/zynq-parrot --branch $(BRANCH)
-	for ip in $(BOARDS); do \
-		mkdir -p $(SERVER_MNT)/$$ip; \
-		cp -r $(SERVER_MNT)/zynq-parrot $(SERVER_MNT)/$$ip/zynq-parrot; \
-	done
-	rm -rf $(SERVER_MNT)/zynq-parrot
-
-clean_dirs:
-	rm -rf $(SERVER_MNT)/$(IP_GROUP)*
-
-mount_boards:
-	for ip in $(BOARDS); do \
-		$(call ssh2board,$$ip,,mkdir -p $(BOARD_MNT)); \
-		$(call ssh2board,$$ip,,mount $(SERVER_IP):$(SERVER_MNT) $(BOARD_MNT)); \
-	done
-
-unmount_boards:
-	for ip in $(BOARDS); do \
-		$(call ssh2board,$$ip,,umount $(BOARD_MNT)); \
-	done
-
-load_bitstreams:
-	for ip in $(BOARDS); do \
-		$(call ssh2board,$$ip,-f,$(MAKE) -C $(BOARD_MNT) load_bitstream > /dev/null 2>&1); \
-	done
-
-%.run:
-	@echo Running $($*_benchs) on $@
-	$(call ssh2board,$*,-f,$(MAKE) -C $(BOARD_MNT) run_nbfs NBF_FILES=\"$(addsuffix .nbf,$(addprefix $(BOARD_MNT)/bench/,$($*_benchs)))\" > /dev/null 2>&1)
-
-run_benchs: $(foreach ip,$(BOARDS),$(ip).run)
-
-else
-
-ZPARROT_DIR = $(BOARD_MNT)/$(MY_IP)/zynq-parrot
-FPGA_DIR   ?= $(ZPARROT_DIR)/cosim/black-parrot-example/fpga
-BITSTREAM  ?= $(FPGA_DIR)/blackparrot_bd_1.tar.xz.b64
-
-$(BITSTREAM): | $(ZPARROT_DIR)
-	cp $(BOARD_MNT)/$(notdir $(BITSTREAM)) $(BITSTREAM)
-
-load_bitstream: $(BITSTREAM) | $(ZPARROT_DIR)
-	cat /proc/meminfo > $(BOARD_MNT)/$(MY_IP)/load.log 2>&1
-	$(MAKE) -C $(FPGA_DIR) unpack_bitstream >> $(BOARD_MNT)/$(MY_IP)/load.log 2>&1
-	$(MAKE) -C $(FPGA_DIR) load_bitstream >> $(BOARD_MNT)/$(MY_IP)/load.log 2>&1
-
-run: $(NBF_FILE) | $(ZPARROT_DIR)
-	$(MAKE) -C $(FPGA_DIR) run NBF_FILE=$< > $(BOARD_MNT)/$(MY_IP)/$(notdir $<).run.log 2>&1
-
-run_nbfs: $(NBF_FILES)
-	for nbf in $(NBF_FILES); do \
-		$(MAKE) run NBF_FILE=$$nbf; \
-	done
-
-endif
+ar_stalls:
+	python ar_stalls.py $(AR_REPS)

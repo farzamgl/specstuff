@@ -42,9 +42,41 @@ def formatSheet(self, spreadsheetId, sheetId, rows, cols):
           'repeatCell': {
             'cell': {
               'userEnteredFormat': {
+                'textFormat': {
+                  'fontFamily': 'Calibri,sans-serif',
+                  'fontSize': 10,
+                  'bold': False,
+                  'italic': False,
+                  'strikethrough': False,
+                  'underline': False,
+                },
+              }
+            },
+            'range': {
+              'sheetId': sheetId,
+              'startRowIndex': 0,
+              'endRowIndex': rows,
+              'startColumnIndex': 0,
+              'endColumnIndex': cols,
+            },
+            'fields': 'userEnteredFormat'
+          }
+        },
+        {
+          'repeatCell': {
+            'cell': {
+              'userEnteredFormat': {
                 'numberFormat': {
                   'type': 'PERCENT',
                   'pattern': '#0.00%'
+                },
+                'textFormat': {
+                  'fontFamily': 'Calibri,sans-serif',
+                  'fontSize': 10,
+                  'bold': False,
+                  'italic': False,
+                  'strikethrough': False,
+                  'underline': False,
                 },
                 'horizontalAlignment': 'CENTER',
                 'verticalAlignment': 'MIDDLE',
@@ -146,6 +178,7 @@ def paintCells(self, spreadsheetId, sheetId, colStart, colEnd):
       ]
     }
     self.batchUpdate(spreadsheetId=spreadsheetId, body=body).execute()
+
 
 def initSheets():
     """Shows basic usage of the Sheets API.

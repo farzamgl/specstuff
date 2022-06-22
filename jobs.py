@@ -28,7 +28,8 @@ if __name__ == "__main__":
   parser.add_argument('-i', dest='filename', required=True, metavar="FILE",
                     type=lambda x: is_valid_file(parser, x),
                     help='File including benchmark names and runtime')
-  parser.add_argument('-n', dest='K', required=True, type=int, metavar='PARTS')
+  parser.add_argument('-n', dest='N', required=True, type=int, metavar='PARTS')
+  parser.add_argument('--start', dest='start', required=True, type=str, metavar='START')
   args = parser.parse_args()
 
   lines = args.filename.readlines()
@@ -43,8 +44,8 @@ if __name__ == "__main__":
     A.append((int(words[1].replace(',','')), words[0]))
 
   values = [i[0] for i in A]
-  sets = subset(values,args.K)
-  names = [[] for _ in range(args.K)]
+  sets = subset(values,args.N)
+  names = [[] for _ in range(args.N)]
 
   d = dict(A)
   for i in xrange(len(sets)):
@@ -52,6 +53,9 @@ if __name__ == "__main__":
     for j in xrange(len(sets[i])):
       names[i][j] = d[sets[i][j]]
 
+  num = int(args.start.split('.')[3])
+  net = args.start[:args.start.rfind('.')]
+
   for i in xrange(len(sets)):
-    print(' '.join(str(x) for x in names[i]))
-    print sum(sets[i])
+    print(net + '.' + str(num) + '_benchs := ' + ' '.join(str(x) for x in names[i]))
+    num = num + 1
