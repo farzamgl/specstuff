@@ -4,22 +4,27 @@ include Makefile.frag
 SHELL := /bin/bash
 
 URL         ?= git@github.com:black-parrot-hdk/zynq-parrot.git
-BRANCH      ?= spectests
+BRANCH      ?= profiling
+EXAMPLE     ?= black-parrot-example
+BITSTREAM   ?= blackparrot_bd_1.tar.xz.b64 
 
-SERVER_MNT   = /home/farzam/mnt/nfs
+SERVER_MNT   = $(CURDIR)
 BOARD_MNT    = /home/xilinx/mnt/nfs_client
-IP_GROUP     = 192.168.2.
-SERVER_IP    = $(IP_GROUP)1
-SERVER_UNAME = farzam
+IP_GROUP     = 192.168.3.
+SERVER_IP    = $(IP_GROUP)100
+FIRST        = 80
+LAST         = 99
 CLIENT_UNAME = xilinx
 CLIENT_PASS  = xilinx
-MY_IP        = $(shell ifconfig | awk '/$(IP_GROUP)/ {print $$2}')
-#BOARDS       = $(filter-out $(SERVER_IP),$(shell nmap -sn -oG - $(IP_GROUP)90-99 | awk '/Host:/ {print $$2}'))
-BOARDS       = 192.168.2.95 192.168.2.96 192.168.2.97 192.168.2.98 192.168.2.99
+MY_IP        = $(shell ifconfig | awk '/$(IP_GROUP)/ {print $$2}' | head -1)
+BOARDS       = $(addprefix $(IP_GROUP),$(shell seq -s " " $(FIRST) $(LAST)))
+#BOARDS       = $(filter-out $(SERVER_IP),$(shell nmap -sn -oG - $(IP_GROUP)50-99 | awk '/Host:/ {print $$2}'))
+#BOARDS       = 192.168.2.95 192.168.2.96 192.168.2.97 192.168.2.98 192.168.2.99
 SSH_SESSIONS = $(subst :ssh,,$(shell ss | grep -i ':ssh' | awk '/:ssh/ {print $$6}'))
 
+
 define ssh2board
-	ssh $(CLIENT_UNAME)@$1 $2 "echo $(CLIENT_PASS) | sudo -S $3"
+	sshpass -p "$(CLIENT_PASS)" ssh $(CLIENT_UNAME)@$1 $2 "echo $(CLIENT_PASS) | sudo -S $3"
 endef
 
 ifeq ($(SERVER_IP),$(MY_IP))
@@ -40,6 +45,7 @@ $(SERVER_MNT)/%/zynq-parrot:
 
 gen_dirs:
 	git clone $(URL) $(SERVER_MNT)/zynq-parrot --branch $(BRANCH)
+	mkdir -p $(SERVER_MNT)
 	for ip in $(BOARDS); do \
 		mkdir -p $(SERVER_MNT)/$$ip; \
 		cp -r $(SERVER_MNT)/zynq-parrot $(SERVER_MNT)/$$ip/zynq-parrot; \
@@ -67,20 +73,19 @@ load_bitstreams:
 
 %.run:
 	@echo Running $($*_benchs) on $@
-	$(call ssh2board,$*,-f,$(MAKE) -C $(BOARD_MNT) run_nbfs NBF_FILES=\"$(addsuffix .nbf,$(addprefix $(BOARD_MNT)/bench/,$($*_benchs)))\" > /dev/null 2>&1)
+	$(call ssh2board,$*,-f,$(MAKE) -C $(BOARD_MNT) run_nbfs NBF_FILES=\"$(addsuffix .nbf,$(addprefix $(BOARD_MNT)/benchs/,$($*_benchs)))\" > /dev/null 2>&1)
 
 run_benchs: $(foreach ip,$(BOARDS),$(ip).run)
 
 else
 
 ZPARROT_DIR = $(BOARD_MNT)/$(MY_IP)/zynq-parrot
-FPGA_DIR   ?= $(ZPARROT_DIR)/cosim/black-parrot-example/fpga
-BITSTREAM  ?= $(FPGA_DIR)/blackparrot_bd_1.tar.xz.b64
+FPGA_DIR    = $(ZPARROT_DIR)/cosim/$(EXAMPLE)/ultra96v2
 
-$(BITSTREAM): | $(ZPARROT_DIR)
-	cp $(BOARD_MNT)/$(notdir $(BITSTREAM)) $(BITSTREAM)
+$(FPGA_DIR)/$(BITSTREAM): | $(ZPARROT_DIR)
+	cp $(BOARD_MNT)/$(BITSTREAM) $@
 
-load_bitstream: $(BITSTREAM) | $(ZPARROT_DIR)
+load_bitstream: $(FPGA_DIR)/$(BITSTREAM) | $(ZPARROT_DIR)
 	cat /proc/meminfo > $(BOARD_MNT)/$(MY_IP)/load.log 2>&1
 	$(MAKE) -C $(FPGA_DIR) unpack_bitstream >> $(BOARD_MNT)/$(MY_IP)/load.log 2>&1
 	$(MAKE) -C $(FPGA_DIR) load_bitstream >> $(BOARD_MNT)/$(MY_IP)/load.log 2>&1
